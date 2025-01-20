@@ -3,32 +3,32 @@ import { db } from "./db"
 import { Gender, PostType } from "@prisma/client"
 
 const createUser = async()=> {
-    // const user = await db.user.create({
-    //     data : {
-    //         email : "chiragj2019@gmail.com",
-    //         password : "password",
-    //         gender : Gender.MALE
-    //     },
-    //     select : {
-    //        id : true,
-    //        email : true,
-    //        name : true,
-    //        _count : {
-    //         select : {
-    //             comments : true,
-    //             likes : true
-    //         }
-    //        },
-    //     }
-    // });
+    await db.user.create({
+        data : {
+            email : "chiragj2019@gmail.com",
+            password : "password",
+            gender : Gender.MALE
+        },
+        select : {
+           id : true,
+           email : true,
+           name : true,
+           _count : {
+            select : {
+                comments : true,
+                likes : true
+            }
+           },
+        }
+    });
 
-    // await db.user.create({
-    //     data : {
-    //         email : "utkarsh@gmail.com",
-    //         password : "password",
-    //         name : "Utkarsh Rawat"
-    //     },
-    // })
+    await db.user.create({
+        data : {
+            email : "utkarsh@gmail.com",
+            password : "password",
+            name : "Utkarsh Rawat"
+        },
+    })
 
     const user = await db.user.create({
         data : {
@@ -41,6 +41,17 @@ const createUser = async()=> {
         }
     })
 
+    const users = await db.user.createMany({
+        data : [
+            { email : "abc@gmail.com", password : "123456" },
+            { email : "pqr@gmail.com", password : "123456" },
+            { email : "xyz@gmail.com", password : "123456" },
+
+        ]
+    })
+
+    console.log(users)
+
     console.log(user);
 }
 
@@ -48,9 +59,9 @@ const createUser = async()=> {
 const createPost = async () => {
     const post = await db.post.create({
         data : {
-            content : "url",
+            content : "url2",
             category : PostType.IMAGE,
-            userId : "678c063ac2015951e9f4058e"
+            userId : "678d3dc5fc7090879d453dcf"
         },
     })
 
@@ -70,9 +81,9 @@ const createComment = async () => {
     console.log(comment);
 }
 
-createComment();
+// createComment();
 
-// createPost();
+createPost();
 
 
 // createUser();

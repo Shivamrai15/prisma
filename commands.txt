@@ -1,0 +1,18 @@
+npm init -y  -> init empty nodejs project
+tsc --init -> init typescript
+
+install packages
+npm i prisma
+npm i @prisma/client
+
+npx prisma init -> init prisma framework (do this to create prisma file)
+npx prisma generate -> convert prisma syntax to SQL or mongodb (do this every time when you update schema.prisma file)
+npx prisma db push -> push database schema in db cloud provider ( do this every time after npx prisma generate)
+
+
+to run the code
+tsc -b -> Compile typescript to javascript
+node dist/file.js
+
+
+npx prisma studio
